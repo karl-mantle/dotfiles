@@ -9,6 +9,6 @@ Other configs also stored here.
 ```bash
 git clone https://github.com/karl-mantle/dotfiles.git
 cd dotfiles
-chmod +x install.sh
-./install.sh
+chmod +x setup.sh
+./setup.sh
 ``
