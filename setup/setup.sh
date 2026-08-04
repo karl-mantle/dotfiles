@@ -7,11 +7,11 @@ SCRIPT_PATH=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 source "$SCRIPT_PATH/config.sh"
 source "$SCRIPT_PATH/lib/utils.sh"
 
-source "$SCRIPT_PATH/setup/git.sh"
-source "$SCRIPT_PATH/setup/languages.sh"
-source "$SCRIPT_PATH/setup/ssh.sh"
+source "$SCRIPT_PATH/bin/git.sh"
+source "$SCRIPT_PATH/bin/languages.sh"
+source "$SCRIPT_PATH/bin/ssh.sh"
 
-source "$SCRIPT_PATH/post/post.sh"
+source "$SCRIPT_PATH/bin/post-install.sh"
 
 main() {
     section_start "Starting dotfiles setup"
