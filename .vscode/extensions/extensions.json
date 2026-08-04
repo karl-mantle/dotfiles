@@ -1,0 +1,495 @@
+[
+  {
+    "identifier": {
+      "id": "astro-build.astro-vscode",
+      "uuid": "1fbbc8b0-7432-4b7e-8774-3336151da2f3"
+    },
+    "version": "2.16.18",
+    "location": {
+      "$mid": 1,
+      "path": "/home/karl-mantle/.vscode/extensions/astro-build.astro-vscode-2.16.18-linux-x64",
+      "scheme": "file"
+    },
+    "relativeLocation": "astro-build.astro-vscode-2.16.18-linux-x64",
+    "metadata": {
+      "installedTimestamp": 1785856780207,
+      "pinned": false,
+      "source": "gallery",
+      "id": "1fbbc8b0-7432-4b7e-8774-3336151da2f3",
+      "publisherId": "6c30d82f-e0d4-488a-a4a3-860c0c90001f",
+      "publisherDisplayName": "Astro",
+      "targetPlatform": "linux-x64",
+      "updated": false,
+      "private": false,
+      "isPreReleaseVersion": false,
+      "hasPreReleaseVersion": false
+    }
+  },
+  {
+    "identifier": {
+      "id": "dbaeumer.vscode-eslint",
+      "uuid": "583b2b34-2c1e-4634-8c0b-0b82e283ea3a"
+    },
+    "version": "3.0.34",
+    "location": {
+      "$mid": 1,
+      "path": "/home/karl-mantle/.vscode/extensions/dbaeumer.vscode-eslint-3.0.34",
+      "scheme": "file"
+    },
+    "relativeLocation": "dbaeumer.vscode-eslint-3.0.34",
+    "metadata": {
+      "installedTimestamp": 1785856847006,
+      "pinned": false,
+      "source": "gallery",
+      "id": "583b2b34-2c1e-4634-8c0b-0b82e283ea3a",
+      "publisherId": "29859a75-d81b-4f0e-8578-2c80ecee6f99",
+      "publisherDisplayName": "Microsoft",
+      "targetPlatform": "undefined",
+      "updated": false,
+      "private": false,
+      "isPreReleaseVersion": false,
+      "hasPreReleaseVersion": false
+    }
+  },
+  {
+    "identifier": {
+      "id": "bradlc.vscode-tailwindcss",
+      "uuid": "4db62a7c-7d70-419c-96d2-6c3a4dc77ea5"
+    },
+    "version": "0.16.0",
+    "location": {
+      "$mid": 1,
+      "path": "/home/karl-mantle/.vscode/extensions/bradlc.vscode-tailwindcss-0.16.0",
+      "scheme": "file"
+    },
+    "relativeLocation": "bradlc.vscode-tailwindcss-0.16.0",
+    "metadata": {
+      "installedTimestamp": 1785856855361,
+      "pinned": false,
+      "source": "gallery",
+      "id": "4db62a7c-7d70-419c-96d2-6c3a4dc77ea5",
+      "publisherId": "84722833-669b-4c7d-920e-b60e43fae19a",
+      "publisherDisplayName": "Tailwind Labs",
+      "targetPlatform": "undefined",
+      "updated": false,
+      "private": false,
+      "isPreReleaseVersion": false,
+      "hasPreReleaseVersion": false
+    }
+  },
+  {
+    "identifier": {
+      "id": "mechatroner.rainbow-csv",
+      "uuid": "3792588c-3d35-442d-91ea-fe6a755e8155"
+    },
+    "version": "3.24.1",
+    "location": {
+      "$mid": 1,
+      "path": "/home/karl-mantle/.vscode/extensions/mechatroner.rainbow-csv-3.24.1",
+      "scheme": "file"
+    },
+    "relativeLocation": "mechatroner.rainbow-csv-3.24.1",
+    "metadata": {
+      "installedTimestamp": 1785856864204,
+      "pinned": false,
+      "source": "gallery",
+      "id": "3792588c-3d35-442d-91ea-fe6a755e8155",
+      "publisherId": "0d5438b6-325a-4f88-aa28-6192aa2cf2a6",
+      "publisherDisplayName": "mechatroner",
+      "targetPlatform": "undefined",
+      "updated": false,
+      "private": false,
+      "isPreReleaseVersion": false,
+      "hasPreReleaseVersion": false
+    }
+  },
+  {
+    "identifier": {
+      "id": "unifiedjs.vscode-mdx",
+      "uuid": "af8cfc85-cb72-45d0-bae2-9a98cd0c69f3"
+    },
+    "version": "1.8.17",
+    "location": {
+      "$mid": 1,
+      "path": "/home/karl-mantle/.vscode/extensions/unifiedjs.vscode-mdx-1.8.17",
+      "scheme": "file"
+    },
+    "relativeLocation": "unifiedjs.vscode-mdx-1.8.17",
+    "metadata": {
+      "installedTimestamp": 1785856871720,
+      "pinned": false,
+      "source": "gallery",
+      "id": "af8cfc85-cb72-45d0-bae2-9a98cd0c69f3",
+      "publisherId": "207bcd0f-c1b5-4dc9-ab76-47615c59238d",
+      "publisherDisplayName": "unified",
+      "targetPlatform": "undefined",
+      "updated": false,
+      "private": false,
+      "isPreReleaseVersion": false,
+      "hasPreReleaseVersion": false
+    }
+  },
+  {
+    "identifier": {
+      "id": "github.vscode-github-actions",
+      "uuid": "04f49bfc-8330-4eee-8237-ea938fb755ef"
+    },
+    "version": "0.32.3",
+    "location": {
+      "$mid": 1,
+      "path": "/home/karl-mantle/.vscode/extensions/github.vscode-github-actions-0.32.3",
+      "scheme": "file"
+    },
+    "relativeLocation": "github.vscode-github-actions-0.32.3",
+    "metadata": {
+      "installedTimestamp": 1785856892609,
+      "pinned": false,
+      "source": "gallery",
+      "id": "04f49bfc-8330-4eee-8237-ea938fb755ef",
+      "publisherId": "7c1c19cd-78eb-4dfb-8999-99caf7679002",
+      "publisherDisplayName": "GitHub",
+      "targetPlatform": "undefined",
+      "updated": false,
+      "private": false,
+      "isPreReleaseVersion": false,
+      "hasPreReleaseVersion": false
+    }
+  },
+  {
+    "identifier": {
+      "id": "ms-vscode-remote.remote-ssh",
+      "uuid": "607fd052-be03-4363-b657-2bd62b83d28a"
+    },
+    "version": "0.124.0",
+    "location": {
+      "$mid": 1,
+      "path": "/home/karl-mantle/.vscode/extensions/ms-vscode-remote.remote-ssh-0.124.0",
+      "scheme": "file"
+    },
+    "relativeLocation": "ms-vscode-remote.remote-ssh-0.124.0",
+    "metadata": {
+      "installedTimestamp": 1785856911500,
+      "pinned": false,
+      "source": "gallery",
+      "id": "607fd052-be03-4363-b657-2bd62b83d28a",
+      "publisherId": "ac9410a2-0d75-40ec-90de-b59bb705801d",
+      "publisherDisplayName": "Microsoft",
+      "targetPlatform": "undefined",
+      "updated": false,
+      "private": false,
+      "isPreReleaseVersion": false,
+      "hasPreReleaseVersion": false
+    }
+  },
+  {
+    "identifier": {
+      "id": "ms-vscode-remote.remote-ssh-edit",
+      "uuid": "bfeaf631-bcff-4908-93ed-fda4ef9a0c5c"
+    },
+    "version": "0.87.0",
+    "location": {
+      "$mid": 1,
+      "path": "/home/karl-mantle/.vscode/extensions/ms-vscode-remote.remote-ssh-edit-0.87.0",
+      "scheme": "file"
+    },
+    "relativeLocation": "ms-vscode-remote.remote-ssh-edit-0.87.0",
+    "metadata": {
+      "installedTimestamp": 1785856911510,
+      "pinned": false,
+      "source": "gallery",
+      "id": "bfeaf631-bcff-4908-93ed-fda4ef9a0c5c",
+      "publisherId": "ac9410a2-0d75-40ec-90de-b59bb705801d",
+      "publisherDisplayName": "Microsoft",
+      "targetPlatform": "undefined",
+      "updated": false,
+      "private": false,
+      "isPreReleaseVersion": false,
+      "hasPreReleaseVersion": false
+    }
+  },
+  {
+    "identifier": {
+      "id": "ms-vscode.remote-explorer",
+      "uuid": "11858313-52cc-4e57-b3e4-d7b65281e34b"
+    },
+    "version": "0.5.0",
+    "location": {
+      "$mid": 1,
+      "path": "/home/karl-mantle/.vscode/extensions/ms-vscode.remote-explorer-0.5.0",
+      "scheme": "file"
+    },
+    "relativeLocation": "ms-vscode.remote-explorer-0.5.0",
+    "metadata": {
+      "installedTimestamp": 1785856911505,
+      "pinned": false,
+      "source": "gallery",
+      "id": "11858313-52cc-4e57-b3e4-d7b65281e34b",
+      "publisherId": "5f5636e7-69ed-4afe-b5d6-8d231fb3d3ee",
+      "publisherDisplayName": "Microsoft",
+      "targetPlatform": "undefined",
+      "updated": false,
+      "private": false,
+      "isPreReleaseVersion": false,
+      "hasPreReleaseVersion": false
+    }
+  },
+  {
+    "identifier": {
+      "id": "github.remotehub",
+      "uuid": "fc7d7e85-2e58-4c1c-97a3-2172ed9a77cd"
+    },
+    "version": "0.64.0",
+    "location": {
+      "$mid": 1,
+      "path": "/home/karl-mantle/.vscode/extensions/github.remotehub-0.64.0",
+      "scheme": "file"
+    },
+    "relativeLocation": "github.remotehub-0.64.0",
+    "metadata": {
+      "installedTimestamp": 1785856925791,
+      "pinned": false,
+      "source": "gallery",
+      "id": "fc7d7e85-2e58-4c1c-97a3-2172ed9a77cd",
+      "publisherId": "7c1c19cd-78eb-4dfb-8999-99caf7679002",
+      "publisherDisplayName": "GitHub",
+      "targetPlatform": "undefined",
+      "updated": false,
+      "private": false,
+      "isPreReleaseVersion": false,
+      "hasPreReleaseVersion": false
+    }
+  },
+  {
+    "identifier": {
+      "id": "ms-vscode.remote-repositories",
+      "uuid": "cf5142f0-3701-4992-980c-9895a750addf"
+    },
+    "version": "0.42.0",
+    "location": {
+      "$mid": 1,
+      "path": "/home/karl-mantle/.vscode/extensions/ms-vscode.remote-repositories-0.42.0",
+      "scheme": "file"
+    },
+    "relativeLocation": "ms-vscode.remote-repositories-0.42.0",
+    "metadata": {
+      "installedTimestamp": 1785856925789,
+      "pinned": false,
+      "source": "gallery",
+      "id": "cf5142f0-3701-4992-980c-9895a750addf",
+      "publisherId": "5f5636e7-69ed-4afe-b5d6-8d231fb3d3ee",
+      "publisherDisplayName": "Microsoft",
+      "targetPlatform": "undefined",
+      "updated": false,
+      "private": false,
+      "isPreReleaseVersion": false,
+      "hasPreReleaseVersion": false
+    }
+  },
+  {
+    "identifier": {
+      "id": "ms-vscode.azure-repos",
+      "uuid": "25cfa506-1433-4595-a73f-61666807126d"
+    },
+    "version": "0.40.0",
+    "location": {
+      "$mid": 1,
+      "path": "/home/karl-mantle/.vscode/extensions/ms-vscode.azure-repos-0.40.0",
+      "scheme": "file"
+    },
+    "relativeLocation": "ms-vscode.azure-repos-0.40.0",
+    "metadata": {
+      "installedTimestamp": 1785856925793,
+      "pinned": false,
+      "source": "gallery",
+      "id": "25cfa506-1433-4595-a73f-61666807126d",
+      "publisherId": "5f5636e7-69ed-4afe-b5d6-8d231fb3d3ee",
+      "publisherDisplayName": "Microsoft",
+      "targetPlatform": "undefined",
+      "updated": false,
+      "private": false,
+      "isPreReleaseVersion": false,
+      "hasPreReleaseVersion": false
+    }
+  },
+  {
+    "identifier": {
+      "id": "ms-vscode-remote.vscode-remote-extensionpack",
+      "uuid": "23d72dfc-8dd1-4e30-926e-8783b4378f13"
+    },
+    "version": "0.26.0",
+    "location": {
+      "$mid": 1,
+      "path": "/home/karl-mantle/.vscode/extensions/ms-vscode-remote.vscode-remote-extensionpack-0.26.0",
+      "scheme": "file"
+    },
+    "relativeLocation": "ms-vscode-remote.vscode-remote-extensionpack-0.26.0",
+    "metadata": {
+      "installedTimestamp": 1785856935733,
+      "pinned": false,
+      "source": "gallery",
+      "id": "23d72dfc-8dd1-4e30-926e-8783b4378f13",
+      "publisherId": "ac9410a2-0d75-40ec-90de-b59bb705801d",
+      "publisherDisplayName": "Microsoft",
+      "targetPlatform": "undefined",
+      "updated": false,
+      "private": false,
+      "isPreReleaseVersion": false,
+      "hasPreReleaseVersion": false
+    }
+  },
+  {
+    "identifier": {
+      "id": "ms-vscode-remote.remote-wsl",
+      "uuid": "f0c5397b-d357-4197-99f0-cb4202f22818"
+    },
+    "version": "0.104.3",
+    "location": {
+      "$mid": 1,
+      "path": "/home/karl-mantle/.vscode/extensions/ms-vscode-remote.remote-wsl-0.104.3",
+      "scheme": "file"
+    },
+    "relativeLocation": "ms-vscode-remote.remote-wsl-0.104.3",
+    "metadata": {
+      "installedTimestamp": 1785856935736,
+      "pinned": false,
+      "source": "gallery",
+      "id": "f0c5397b-d357-4197-99f0-cb4202f22818",
+      "publisherId": "ac9410a2-0d75-40ec-90de-b59bb705801d",
+      "publisherDisplayName": "Microsoft",
+      "targetPlatform": "undefined",
+      "updated": false,
+      "private": false,
+      "isPreReleaseVersion": false,
+      "hasPreReleaseVersion": false
+    }
+  },
+  {
+    "identifier": {
+      "id": "ms-vscode.remote-server",
+      "uuid": "105c0b3c-07a9-4156-a4fc-4141040eb07e"
+    },
+    "version": "1.5.3",
+    "location": {
+      "$mid": 1,
+      "path": "/home/karl-mantle/.vscode/extensions/ms-vscode.remote-server-1.5.3",
+      "scheme": "file"
+    },
+    "relativeLocation": "ms-vscode.remote-server-1.5.3",
+    "metadata": {
+      "installedTimestamp": 1785856935738,
+      "pinned": false,
+      "source": "gallery",
+      "id": "105c0b3c-07a9-4156-a4fc-4141040eb07e",
+      "publisherId": "5f5636e7-69ed-4afe-b5d6-8d231fb3d3ee",
+      "publisherDisplayName": "Microsoft",
+      "targetPlatform": "undefined",
+      "updated": false,
+      "private": false,
+      "isPreReleaseVersion": false,
+      "hasPreReleaseVersion": false
+    }
+  },
+  {
+    "identifier": {
+      "id": "ms-vscode-remote.remote-containers",
+      "uuid": "93ce222b-5f6f-49b7-9ab1-a0463c6238df"
+    },
+    "version": "0.466.0",
+    "location": {
+      "$mid": 1,
+      "path": "/home/karl-mantle/.vscode/extensions/ms-vscode-remote.remote-containers-0.466.0",
+      "scheme": "file"
+    },
+    "relativeLocation": "ms-vscode-remote.remote-containers-0.466.0",
+    "metadata": {
+      "installedTimestamp": 1785856935740,
+      "pinned": false,
+      "source": "gallery",
+      "id": "93ce222b-5f6f-49b7-9ab1-a0463c6238df",
+      "publisherId": "ac9410a2-0d75-40ec-90de-b59bb705801d",
+      "publisherDisplayName": "Microsoft",
+      "targetPlatform": "undefined",
+      "updated": false,
+      "private": false,
+      "isPreReleaseVersion": false,
+      "hasPreReleaseVersion": false
+    }
+  },
+  {
+    "identifier": {
+      "id": "esbenp.prettier-vscode",
+      "uuid": "96fa4707-6983-4489-b7c5-d5ffdfdcce90"
+    },
+    "version": "12.4.0",
+    "location": {
+      "$mid": 1,
+      "path": "/home/karl-mantle/.vscode/extensions/esbenp.prettier-vscode-12.4.0",
+      "scheme": "file"
+    },
+    "relativeLocation": "esbenp.prettier-vscode-12.4.0",
+    "metadata": {
+      "installedTimestamp": 1785857822914,
+      "pinned": false,
+      "source": "gallery",
+      "id": "96fa4707-6983-4489-b7c5-d5ffdfdcce90",
+      "publisherId": "d16f4e39-2ffb-44e3-9c0d-79d873570e3a",
+      "publisherDisplayName": "Prettier",
+      "targetPlatform": "undefined",
+      "updated": false,
+      "private": false,
+      "isPreReleaseVersion": false,
+      "hasPreReleaseVersion": false
+    }
+  },
+  {
+    "identifier": {
+      "id": "tboby.paradox-syntax",
+      "uuid": "926d61a3-1fcd-42bc-836b-21e12524dab6"
+    },
+    "version": "0.1.18",
+    "location": {
+      "$mid": 1,
+      "path": "/home/karl-mantle/.vscode/extensions/tboby.paradox-syntax-0.1.18",
+      "scheme": "file"
+    },
+    "relativeLocation": "tboby.paradox-syntax-0.1.18",
+    "metadata": {
+      "installedTimestamp": 1785857861993,
+      "pinned": false,
+      "source": "gallery",
+      "id": "926d61a3-1fcd-42bc-836b-21e12524dab6",
+      "publisherId": "69610a87-9a8c-44fe-aab7-8357881ee746",
+      "publisherDisplayName": "Thomas Boby",
+      "targetPlatform": "undefined",
+      "updated": false,
+      "private": false,
+      "isPreReleaseVersion": false,
+      "hasPreReleaseVersion": false
+    }
+  },
+  {
+    "identifier": { "id": "tboby.cwtools-vscode" },
+    "version": "0.10.31",
+    "location": {
+      "$mid": 1,
+      "fsPath": "/home/karl-mantle/.vscode/extensions/tboby.cwtools-vscode-0.10.31",
+      "external": "file:///home/karl-mantle/.vscode/extensions/tboby.cwtools-vscode-0.10.31",
+      "path": "/home/karl-mantle/.vscode/extensions/tboby.cwtools-vscode-0.10.31",
+      "scheme": "file"
+    },
+    "relativeLocation": "tboby.cwtools-vscode-0.10.31",
+    "metadata": {
+      "installedTimestamp": 1785857861991,
+      "pinned": false,
+      "source": "gallery",
+      "id": "5475d649-8249-4a0b-9ba6-ca3f49bc96dd",
+      "publisherId": "69610a87-9a8c-44fe-aab7-8357881ee746",
+      "publisherDisplayName": "Thomas Boby",
+      "targetPlatform": "undefined",
+      "updated": false,
+      "private": false,
+      "isPreReleaseVersion": false,
+      "hasPreReleaseVersion": false
+    }
+  }
+]
