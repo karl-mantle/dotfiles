@@ -2,9 +2,9 @@
 
 dotfiles, configs and scripts
 
-```bash
-git clone https://github.com/karl-mantle/dotfiles.git
-cd dotfiles
+````bash
+git clone https://github.com/karl-mantle/dotfiles.git ~/dotfiles
+cd ~/dotfiles
 ``
 
 ## Ubuntu
@@ -20,7 +20,6 @@ Setup script for installing and configuring:
 - NVM/Node.js
 
 ```bash
-cd dotfiles/setup/
-chmod +x /setup.sh
+cd ~/dotfiles/setup/
 ./setup.sh
-``
+````
