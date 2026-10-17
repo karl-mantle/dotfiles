@@ -2,24 +2,7 @@
 
 dotfiles, configs and scripts
 
-````bash
+```bash
 git clone https://github.com/karl-mantle/dotfiles.git ~/dotfiles
 cd ~/dotfiles
-``
-
-## Ubuntu
-
-Written for Ubuntu 26.04 LTS
-
-### Setup
-
-Setup script for installing and configuring:
-
-- SSH
-- Git
-- NVM/Node.js
-
-```bash
-cd ~/dotfiles/setup/
-./setup.sh
-````
+```
