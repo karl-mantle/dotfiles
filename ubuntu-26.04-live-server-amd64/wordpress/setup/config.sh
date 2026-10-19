@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # system
-HOSTNAME=""  # leave empty to keep the current hostname
+DEVICE_HOSTNAME=""  # leave empty to keep the current hostname
 
 # swapfile
 SWAP_FILE="/swapfile"

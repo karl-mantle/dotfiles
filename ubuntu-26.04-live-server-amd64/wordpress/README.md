@@ -25,7 +25,7 @@ sudo ./setup.sh
 
 4. Complete the manual actions post-install. **Check you can log in over Tailscale before closing this session.**
 
-### Interactive steps
+### Manual steps
 
 - Tailscale login URL (or set `TS_AUTHKEY` to skip it)
 - `mysql_secure_installation`

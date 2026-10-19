@@ -19,7 +19,6 @@ setup_required_packages() {
     if [ ${#MISSING[@]} -gt 0 ]; then
         echo "Installing missing packages: ${MISSING[*]}"
 
-        sudo apt update
         sudo apt install -y "${MISSING[@]}"
     else
         echo "All prerequisites installed, skipping."

@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# system
+DEVICE_HOSTNAME=""  # leave empty to keep the current hostname
+
 # personal info
 GIT_NAME="Karl Mantle"
 GIT_EMAIL="130184376+karl-mantle@users.noreply.github.com"
