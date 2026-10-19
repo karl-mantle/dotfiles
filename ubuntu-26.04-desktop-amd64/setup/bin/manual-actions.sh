@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-setup_post_actions() {
+manual_actions() {
     section_start "Manual action required"
 
 

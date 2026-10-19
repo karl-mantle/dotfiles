@@ -12,21 +12,18 @@ source "$SCRIPT_PATH/bin/node.sh"
 source "$SCRIPT_PATH/bin/packages.sh"
 source "$SCRIPT_PATH/bin/ssh.sh"
 
-source "$SCRIPT_PATH/bin/post-install.sh"
+source "$SCRIPT_PATH/bin/manual-actions.sh"
 
 main() {
     check_sudo
     section_start "Starting karl-mantle/dotfiles/ubuntu-26.04-desktop-amd64/setup"
 
     setup_required_packages
-
     setup_git
+    setup_nvm
     setup_ssh
 
-    setup_nvm
-    setup_global_node_packages
-
-    setup_post_actions
+    manual_actions
 
     echo
     echo "Setup complete!"

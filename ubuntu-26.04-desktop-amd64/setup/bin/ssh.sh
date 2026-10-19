@@ -42,16 +42,4 @@ EOF
         echo "No SSH agent detected."
         echo "Ubuntu normally starts one automatically."
     fi
-
-    echo
-    echo "Your GitHub SSH public key:"
-    echo "--------------------------------"
-    cat "${SSH_KEY_PATH}.pub"
-    echo "--------------------------------"
-    echo
-    echo "Add this key to GitHub:"
-    echo "https://github.com/settings/keys"
-    echo
-    echo "Test with:"
-    echo "ssh -T git@github.com"
 }
