@@ -1,4 +1,6 @@
-# Ubuntu Desktop 26.04 LTS
+# Ubuntu 26.04 Desktop AMD64
+
+https://releases.ubuntu.com/26.04/
 
 ## Initialise machine
 
