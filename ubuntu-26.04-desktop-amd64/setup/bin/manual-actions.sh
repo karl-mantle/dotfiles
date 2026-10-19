@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 setup_post_actions() {
-    section_start "Actions to take after setup"
+    section_start "Manual action required"
 
 
     # post-setup github actions

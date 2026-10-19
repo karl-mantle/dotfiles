@@ -2,15 +2,31 @@
 
 https://releases.ubuntu.com/26.04/
 
-## Initialise machine
+The only prerequisite is having `git` installed in order to clone the repo via HTTPS.
 
-Setup script for installing and configuring:
+## Initialise
 
-- SSH
-- Git
-- NVM/Node.js
+1. Clone the repository to the home folder.
+
+2. Run the below:
 
 ```bash
-cd ~/dotfiles/setup/
+cd ~/dotfiles/ubuntu-26.04-desktop-amd64/setup/
 ./setup.sh
 ```
+
+3. Complete the manual actions post-install
+
+## Contents
+
+- **git configuration**: update values in `./setup/config.sh`
+- **nvm + node.js**: installs latest LTS version
+
+### Node packages installed
+
+- astro-language-server
+- eslint
+- prettier
+- typescript
+- typescript-language-server
+- wrangler

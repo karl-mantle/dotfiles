@@ -35,15 +35,16 @@ setup_nvm() {
     echo "Installed npm:  $(npm -v)"
 }
 
-setup_node_packages() {
-    section_start "Installing Node packages"
+setup_global_node_packages() {
+    section_start "Installing global Node packages"
 
     PACKAGES=(
-        prettier
+        astro-language-server
         eslint
+        prettier
         typescript
         typescript-language-server
-        astro-language-server
+        wrangler
     )
 
     npm install --global "${PACKAGES[@]}"

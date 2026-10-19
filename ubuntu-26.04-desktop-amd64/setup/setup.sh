@@ -8,22 +8,24 @@ source "$SCRIPT_PATH/config.sh"
 source "$SCRIPT_PATH/lib/utils.sh"
 
 source "$SCRIPT_PATH/bin/git.sh"
-source "$SCRIPT_PATH/bin/languages.sh"
+source "$SCRIPT_PATH/bin/node.sh"
 source "$SCRIPT_PATH/bin/ssh.sh"
 
 source "$SCRIPT_PATH/bin/post-install.sh"
 
 main() {
-    section_start "Starting dotfiles setup"
+    section_start "Starting karl-mantle/dotfiles/ubuntu-26.04-desktop-amd64/setup"
 
     setup_git
-    setup_nvm
     setup_ssh
+
+    setup_nvm
+    setup_global_node_packages
 
     setup_post_actions
 
     echo
-    echo "Setup complete."
+    echo "Setup complete!"
 }
 
 main "$@"
