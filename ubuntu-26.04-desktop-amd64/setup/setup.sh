@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -eo pipefail
 
 SCRIPT_PATH=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
@@ -9,12 +9,15 @@ source "$SCRIPT_PATH/lib/utils.sh"
 
 source "$SCRIPT_PATH/bin/git.sh"
 source "$SCRIPT_PATH/bin/node.sh"
+source "$SCRIPT_PATH/bin/packages.sh"
 source "$SCRIPT_PATH/bin/ssh.sh"
 
 source "$SCRIPT_PATH/bin/post-install.sh"
 
 main() {
     section_start "Starting karl-mantle/dotfiles/ubuntu-26.04-desktop-amd64/setup"
+
+    setup_required_packages
 
     setup_git
     setup_ssh

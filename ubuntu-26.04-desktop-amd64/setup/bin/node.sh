@@ -9,7 +9,7 @@ setup_nvm() {
     if [ ! -s "$NVM_DIR/nvm.sh" ]; then
         echo "Installing NVM..."
 
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
+        curl -fsSL https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.4/install.sh | bash
     else
         echo "NVM already installed, skipping."
     fi
