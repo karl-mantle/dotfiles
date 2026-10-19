@@ -15,6 +15,7 @@ source "$SCRIPT_PATH/bin/ssh.sh"
 source "$SCRIPT_PATH/bin/post-install.sh"
 
 main() {
+    check_sudo
     section_start "Starting karl-mantle/dotfiles/ubuntu-26.04-desktop-amd64/setup"
 
     setup_required_packages
