@@ -17,4 +17,15 @@ manual_actions() {
         echo "SSH_AUTHORIZED_KEYS in config.sh, then run this script again"
         echo "to finish SSH hardening."
     fi
+
+    if [ -n "$SITE_DOMAIN" ] && [ ! -e "/etc/nginx/sites-enabled/$SITE_DOMAIN" ]; then
+        echo
+        echo "The site $SITE_DOMAIN was skipped (no certificate). Point its DNS"
+        echo "here, then run this script again."
+    elif [ -n "$SITE_DOMAIN" ] && ! wordpress_is_installed; then
+        echo
+        echo "Finish installing WordPress now, before anyone else can:"
+        echo "https://$SITE_DOMAIN/wp-admin/install.php"
+        echo "Then run this script again to block the installer."
+    fi
 }

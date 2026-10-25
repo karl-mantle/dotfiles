@@ -16,7 +16,9 @@ source "$SCRIPT_PATH/bin/swap.sh"
 source "$SCRIPT_PATH/bin/updates.sh"
 source "$SCRIPT_PATH/bin/tailscale.sh"
 source "$SCRIPT_PATH/bin/firewall.sh"
+source "$SCRIPT_PATH/bin/nginx.sh"
 source "$SCRIPT_PATH/bin/wordpress.sh"
+source "$SCRIPT_PATH/bin/wordpress-site.sh"
 source "$SCRIPT_PATH/bin/fail2ban.sh"
 source "$SCRIPT_PATH/bin/ssh.sh"
 
@@ -37,7 +39,10 @@ main() {
     setup_unattended_upgrades
     setup_tailscale
     setup_firewall
+    setup_nginx
     setup_wordpress_stack
+    setup_wordpress_site
+    setup_nginx_site # after PHP and WordPress, for the FPM socket and installer state
     setup_fail2ban
     setup_ssh_hardening # last in case of above failure
 
