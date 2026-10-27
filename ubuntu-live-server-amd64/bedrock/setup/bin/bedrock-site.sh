@@ -102,10 +102,13 @@ setup_bedrock_site() {
         as_deploy composer install --no-dev --optimize-autoloader --no-interaction --working-dir="$theme_dir"
     fi
 
-    # code is read-only to PHP, apart from uploads
-    mkdir -p "$SITE_WEB_ROOT/app/uploads"
-    chown "$SITE_USER:$SITE_USER" "$SITE_WEB_ROOT/app/uploads"
-    chmod 755 "$SITE_WEB_ROOT/app/uploads"
+    # code is read-only to PHP, apart from uploads and the cache
+    # (Acorn compiles the Sage theme's Blade views into app/cache/acorn)
+    for dir in uploads cache; do
+        mkdir -p "$SITE_WEB_ROOT/app/$dir"
+        chown "$SITE_USER:$SITE_USER" "$SITE_WEB_ROOT/app/$dir"
+        chmod 755 "$SITE_WEB_ROOT/app/$dir"
+    done
 
     setup_security_txt
 
