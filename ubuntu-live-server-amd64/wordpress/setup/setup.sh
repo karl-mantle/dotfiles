@@ -19,6 +19,8 @@ source "$SCRIPT_PATH/bin/firewall.sh"
 source "$SCRIPT_PATH/bin/nginx.sh"
 source "$SCRIPT_PATH/bin/wordpress.sh"
 source "$SCRIPT_PATH/bin/wordpress-site.sh"
+source "$SCRIPT_PATH/bin/php-pool.sh"
+source "$SCRIPT_PATH/bin/wordpress-maintenance.sh"
 source "$SCRIPT_PATH/bin/fail2ban.sh"
 source "$SCRIPT_PATH/bin/ssh.sh"
 
@@ -30,7 +32,7 @@ main() {
     USERNAME="$SUDO_USER"
     USER_HOME=$(getent passwd "$USERNAME" | cut -d: -f6)
 
-    section_start "Starting karl-mantle/dotfiles/ubuntu-26.04-live-server-amd64/wordpress/setup"
+    section_start "Starting karl-mantle/dotfiles/ubuntu-live-server-amd64/wordpress/setup"
 
     setup_system
     setup_required_packages
@@ -41,8 +43,12 @@ main() {
     setup_firewall
     setup_nginx
     setup_wordpress_stack
+    setup_wp_cli
     setup_wordpress_site
-    setup_nginx_site # after PHP and WordPress, for the FPM socket and installer state
+    setup_php_pool
+    setup_nginx_site # after the PHP pool and WordPress, for the socket and installer state
+    setup_wordpress_plugins
+    setup_wordpress_maintenance
     setup_fail2ban
     setup_ssh_hardening # last in case of above failure
 

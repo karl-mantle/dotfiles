@@ -7,6 +7,11 @@ check_sudo() {
     fi
 }
 
+# run WP-CLI against the site as the user its PHP runs as
+wp_site() {
+    sudo -u "$SITE_USER" WP_CLI_CACHE_DIR="/var/cache/wp-cli/$SITE_USER" /usr/local/bin/wp --path="$SITE_ROOT" "$@"
+}
+
 section_start() {
     echo
     echo "=============================="

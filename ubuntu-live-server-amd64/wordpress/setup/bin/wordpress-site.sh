@@ -8,6 +8,19 @@ setup_wordpress_site() {
         return
     fi
 
+    # system user the site's PHP-FPM pool runs as: no login, no sudo
+    if ! id "$SITE_USER" >/dev/null 2>&1; then
+        echo "Creating system user $SITE_USER..."
+
+        useradd --system --user-group --no-create-home \
+            --home-dir "$SITE_ROOT" --shell /usr/sbin/nologin "$SITE_USER"
+    else
+        echo "User $SITE_USER already exists, skipping."
+    fi
+
+    # the site user's home is the site, which WP-CLI can't use as a cache
+    install -d -o "$SITE_USER" -g "$SITE_USER" "/var/cache/wp-cli/$SITE_USER"
+
     # download WordPress
     if [ ! -f "$SITE_ROOT/wp-includes/version.php" ]; then
         echo "Downloading WordPress to $SITE_ROOT..."
@@ -22,13 +35,16 @@ setup_wordpress_site() {
         tar -xzf "$tmp/wordpress.tar.gz" -C "$SITE_ROOT" --strip-components=1
         rm -rf "$tmp"
 
-        # PHP-FPM runs as www-data and needs to write uploads, plugins and updates
-        chown -R www-data:www-data "$SITE_ROOT"
+        # the site's PHP runs as its own user, which needs to write uploads, plugins
+        # and updates; files stay world-readable so nginx (www-data) can serve them
+        chown -R "$SITE_USER:$SITE_USER" "$SITE_ROOT"
         find "$SITE_ROOT" -type d -exec chmod 755 {} +
         find "$SITE_ROOT" -type f -exec chmod 644 {} +
     else
         echo "WordPress already in $SITE_ROOT, skipping download."
     fi
+
+    setup_security_txt
 
     mysql -e "CREATE DATABASE IF NOT EXISTS \`$SITE_DB_NAME\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
 
@@ -60,7 +76,7 @@ EOF
         }
     ')
 
-    install -m 640 -o www-data -g www-data /dev/null "$SITE_ROOT/wp-config.php"
+    install -m 640 -o "$SITE_USER" -g "$SITE_USER" /dev/null "$SITE_ROOT/wp-config.php"
 
     cat > "$SITE_ROOT/wp-config.php" <<EOF
 <?php
@@ -78,12 +94,57 @@ $salts
 
 define( 'WP_DEBUG', false );
 
+// hardening: no theme/plugin editor in the dashboard, HTTPS-only admin,
+// and outgoing requests only to the hosts listed (updates still work)
+define( 'DISALLOW_FILE_EDIT', true );
+define( 'FORCE_SSL_ADMIN', true );
+define( 'WP_HTTP_BLOCK_EXTERNAL', true );
+define( 'WP_ACCESSIBLE_HOSTS', '$SITE_ACCESSIBLE_HOSTS' );
+
 if ( ! defined( 'ABSPATH' ) ) {
     define( 'ABSPATH', __DIR__ . '/' );
 }
 
 require_once ABSPATH . 'wp-settings.php';
 EOF
+}
+
+setup_security_txt() {
+    if [ -z "$SECURITY_CONTACT" ]; then
+        echo "No SECURITY_CONTACT set in config.sh, skipping security.txt."
+        return
+    fi
+
+    # RFC 9116: Expires is required and should be under a year away,
+    # so it's rewritten on every run
+    install -d -o "$SITE_USER" -g "$SITE_USER" "$SITE_ROOT/.well-known"
+
+    cat > "$SITE_ROOT/.well-known/security.txt" <<EOF
+Contact: $SECURITY_CONTACT
+Expires: $(date -u -d "+1 year" +%Y-%m-%dT%H:%M:%SZ)
+Preferred-Languages: en
+Canonical: https://$SITE_DOMAIN/.well-known/security.txt
+EOF
+
+    echo "Wrote security.txt, expires in a year (run this script again to renew)."
+}
+
+setup_wordpress_plugins() {
+    section_start "Installing WordPress plugins"
+
+    if [ -z "$SITE_DOMAIN" ] || ! wordpress_is_installed; then
+        echo "WordPress isn't installed yet, skipping. Run this script again after the installer."
+        return
+    fi
+
+    for plugin in "${SITE_PLUGINS[@]}"; do
+        # only installs missing plugins, so ones you deactivate stay deactivated
+        if wp_site plugin is-installed "$plugin"; then
+            echo "$plugin already installed, skipping."
+        else
+            wp_site plugin install "$plugin" --activate
+        fi
+    done
 }
 
 wordpress_is_installed() {

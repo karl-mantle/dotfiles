@@ -20,6 +20,8 @@ limit_req_zone $wp_login_limit_key zone=wp_login:10m rate=10r/m;
 limit_req_status 429;
 EOF
 
+    setup_cloudflare_real_ip
+
     # Catch-all for requests whose Host doesn't match any site, such as scanners hitting
     # the server's IP address. Closes the connection instead of serving a site.
     # Its own file, so Debian's packaged default site is left untouched for upgrades.
@@ -67,9 +69,6 @@ setup_nginx_site() {
     else
         echo "Certificate for $SITE_DOMAIN already exists, skipping."
     fi
-
-    local php_version
-    php_version=$(php -r 'echo PHP_MAJOR_VERSION . "." . PHP_MINOR_VERSION;')
 
     # leave the installer reachable until WordPress is installed, then block it
     local install_rule='location ~* ^/wp-admin/install\.php$ { return 444; }'
@@ -131,7 +130,7 @@ server {
     location ~* ^/wp-login\.php$ {
         limit_req zone=wp_login burst=5 nodelay;
         include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/run/php/php$php_version-fpm.sock;
+        fastcgi_pass unix:/run/php/php-fpm-$SITE_USER.sock;
     }
 
     # Cache static assets in the browser
@@ -147,7 +146,7 @@ server {
 
     location ~ \.php$ {
         include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/run/php/php$php_version-fpm.sock;
+        fastcgi_pass unix:/run/php/php-fpm-$SITE_USER.sock;
     }
 }
 
@@ -163,4 +162,28 @@ EOF
 
     nginx -t
     systemctl reload nginx
+}
+
+setup_cloudflare_real_ip() {
+    local conf=/etc/nginx/conf.d/cloudflare-real-ip.conf
+
+    if [ "$CLOUDFLARE_PROXY" != "true" ]; then
+        rm -f "$conf"
+        return
+    fi
+
+    echo "Trusting Cloudflare's CF-Connecting-IP header for visitor IPs..."
+
+    # Behind Cloudflare's proxy every request comes from a Cloudflare IP. This swaps in
+    # the visitor's real IP for logs, the login rate limit, fail2ban and PHP.
+    # The ranges rarely change; run this script again to refresh them.
+    local ranges
+    ranges=$(curl -fsSL https://www.cloudflare.com/ips-v4; echo; curl -fsSL https://www.cloudflare.com/ips-v6)
+
+    {
+        echo "# Cloudflare IP ranges, from https://www.cloudflare.com/ips/"
+        grep -v '^$' <<< "$ranges" | sed 's/^/set_real_ip_from /; s/$/;/'
+        echo
+        echo "real_ip_header CF-Connecting-IP;"
+    } > "$conf"
 }
