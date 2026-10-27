@@ -56,7 +56,7 @@ It's only needed once, as it's saved to `/etc/fail2ban/jail.d/cloudflare.local`.
 - **wp-cli**: installed to `/usr/local/bin/wp` (checksum verified)
 - **wordpress site**: WordPress files, database, user, hardened `wp-config.php`, `security.txt` and plugins for `SITE_DOMAIN`
 - **php-fpm pool**: a pool per site, running as the site's own system user (the stock `[www]` pool is disabled)
-- **maintenance**: daily database backup, then core, plugin and theme updates (`wordpress-maintenance.timer`)
+- **maintenance**: daily database backup, then core, plugin and theme updates (`wordpress-maintenance-<site user>.timer`)
 - **fail2ban**: `sshd`, `nginx-http-auth` and `wordpress` (`wp-login.php`) jails, optionally banning at Cloudflare
 - **ssh hardening**: no root login, no password login (skipped until the user has a key)
 
@@ -92,16 +92,16 @@ Each site's PHP runs in its own pool as its own user, so a hacked plugin can't c
 
 ## Maintenance
 
-`wordpress-maintenance.timer` runs once a day:
+`wordpress-maintenance-<site user>.timer` runs once a day, e.g. `wordpress-maintenance-wordpress_karlsblog_dev.timer`:
 
 1. backs up the database to `BACKUP_DIR`, keeping `BACKUP_KEEP_DAYS` days
 2. updates core, plugins and themes
 3. verifies the core file checksums and checks the database
 
 ```bash
-systemctl list-timers wordpress-maintenance.timer   # next run
-journalctl -u wordpress-maintenance                 # output of past runs
-sudo systemctl start wordpress-maintenance          # run now
+systemctl list-timers 'wordpress-maintenance-*'                     # next runs
+journalctl -u wordpress-maintenance-wordpress_karlsblog_dev        # output of past runs
+sudo systemctl start wordpress-maintenance-wordpress_karlsblog_dev # run now
 ```
 
 Backups stay on the server and only cover the database, so copy them somewhere else if the server itself is lost.

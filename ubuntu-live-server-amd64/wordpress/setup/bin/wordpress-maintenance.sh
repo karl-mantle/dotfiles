@@ -8,11 +8,14 @@ setup_wordpress_maintenance() {
         return
     fi
 
+    # one per site, so other sites' setups on this server don't overwrite it
+    local name="wordpress-maintenance-$SITE_USER"
+
     # site values are written into the script, so it runs on its own from the timer
-    cat > /usr/local/sbin/wordpress-maintenance <<EOF
+    cat > "/usr/local/sbin/$name" <<EOF
 #!/usr/bin/env bash
 # Daily backup and updates for $SITE_DOMAIN, written by dotfiles wordpress/setup.
-# Run by wordpress-maintenance.timer, see: journalctl -u wordpress-maintenance
+# Run by $name.timer, see: journalctl -u $name
 
 set -eo pipefail
 
@@ -50,19 +53,19 @@ wp core verify-checksums
 wp db check
 EOF
 
-    chmod 750 /usr/local/sbin/wordpress-maintenance
+    chmod 750 "/usr/local/sbin/$name"
 
-    cat > /etc/systemd/system/wordpress-maintenance.service <<EOF
+    cat > "/etc/systemd/system/$name.service" <<EOF
 [Unit]
 Description=WordPress backup and updates for $SITE_DOMAIN
 After=mysql.service
 
 [Service]
 Type=oneshot
-ExecStart=/usr/local/sbin/wordpress-maintenance
+ExecStart=/usr/local/sbin/$name
 EOF
 
-    cat > /etc/systemd/system/wordpress-maintenance.timer <<EOF
+    cat > "/etc/systemd/system/$name.timer" <<EOF
 [Unit]
 Description=Daily WordPress backup and updates
 
@@ -77,7 +80,7 @@ WantedBy=timers.target
 EOF
 
     systemctl daemon-reload
-    systemctl enable --now wordpress-maintenance.timer
+    systemctl enable --now "$name.timer"
 
-    systemctl list-timers wordpress-maintenance.timer
+    systemctl list-timers "$name.timer"
 }
