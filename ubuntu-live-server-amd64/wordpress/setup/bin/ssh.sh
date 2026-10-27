@@ -17,6 +17,7 @@ PermitRootLogin no
 PasswordAuthentication no
 KbdInteractiveAuthentication no
 PubkeyAuthentication yes
+X11Forwarding no
 EOF
 
     sshd -t
@@ -24,12 +25,13 @@ EOF
 
     # check the settings actually took effect
     local effective
-    effective=$(sshd -T | grep -E "^(permitrootlogin|passwordauthentication) ")
+    effective=$(sshd -T | grep -E "^(permitrootlogin|passwordauthentication|x11forwarding) ")
 
     echo "$effective"
 
     if ! grep -qx "permitrootlogin no" <<< "$effective" \
-        || ! grep -qx "passwordauthentication no" <<< "$effective"; then
+        || ! grep -qx "passwordauthentication no" <<< "$effective" \
+        || ! grep -qx "x11forwarding no" <<< "$effective"; then
         echo "SSH hardening did not take effect, check /etc/ssh/sshd_config.d/."
         exit 1
     fi

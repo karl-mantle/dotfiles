@@ -58,7 +58,7 @@ It's only needed once, as it's saved to `/etc/fail2ban/jail.d/cloudflare.local`.
 - **php-fpm pool**: a pool per site, running as the site's own system user (the stock `[www]` pool is disabled)
 - **maintenance**: daily database backup, then core, plugin and theme updates (`wordpress-maintenance-<site user>.timer`)
 - **fail2ban**: `sshd`, `nginx-http-auth` and `wordpress` (`wp-login.php`) jails, optionally banning at Cloudflare
-- **ssh hardening**: no root login, no password login (skipped until the user has a key)
+- **ssh hardening**: no root login, no password login, no X11 forwarding (skipped until the user has a key)
 
 The script is safe to run again, e.g. after adding an SSH key.
 
