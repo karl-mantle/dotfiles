@@ -13,7 +13,7 @@ F2B_DESTEMAIL=""
 F2B_SENDER=""
 
 # WordPress site (leave empty to skip; the domain's DNS must point here for the certificate)
-SITE_DOMAIN=""
+SITE_DOMAIN="wordpress.karlsblog.dev"
 SITE_ROOT="/var/www/$SITE_DOMAIN"  # folder containing wp-config.php
 SITE_DB_NAME="${SITE_DOMAIN//[^a-zA-Z0-9]/_}"  # e.g. wordpress_karlsblog_dev
 SITE_DB_USER="${SITE_DB_NAME:0:32}"  # MySQL user names are at most 32 characters
@@ -24,7 +24,12 @@ SITE_ACCESSIBLE_HOSTS="*.wordpress.org,*.github.com,*.wordfence.com,*.yoast.com"
 
 # plugins installed and activated once WordPress is installed (wordpress.org slugs)
 SITE_PLUGINS=(
-    disable-xml-rpc
+    ai
+    cms-tree-page-view
+    duplicate-post
+    redirection
+    safe-svg
+    secure-custom-fields
     wordfence
     wordpress-seo
 )

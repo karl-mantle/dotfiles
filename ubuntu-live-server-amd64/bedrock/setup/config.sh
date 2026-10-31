@@ -13,7 +13,7 @@ F2B_DESTEMAIL=""
 F2B_SENDER=""
 
 # Bedrock site (leave empty to skip; the domain's DNS must point here for the certificate)
-SITE_DOMAIN=""
+SITE_DOMAIN="bedrock.karlsblog.dev"
 SITE_REPO="git@github.com:karl-mantle/bedrock-karlsblog.git"
 SITE_THEME="karlsblog"  # folder in web/app/themes/ with its own composer.json (leave empty if none)
 SITE_ROOT="/var/www/$SITE_DOMAIN"  # repo root, containing .env and composer.json
