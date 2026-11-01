@@ -73,8 +73,9 @@ setup_bedrock_site() {
 
     # clone the repo as the deploy user, who owns the code
     if [ ! -d "$SITE_ROOT/.git" ]; then
-        if ! as_deploy git ls-remote "$SITE_REPO" >/dev/null 2>&1; then
-            echo "Can't read $SITE_REPO yet, skipping the site."
+        # only the list of branches is hidden, so GitHub's error shows if access fails
+        if ! as_deploy git ls-remote "$SITE_REPO" >/dev/null; then
+            echo "Can't read $SITE_REPO yet (GitHub's reason is above), skipping the site."
             echo "Add the deploy key to the repo (see manual actions), then run this script again."
             return
         fi

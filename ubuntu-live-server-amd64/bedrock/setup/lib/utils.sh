@@ -7,14 +7,17 @@ check_sudo() {
     fi
 }
 
+# These run from / because the script runs from inside the admin user's home folder,
+# which other users can't read, and git, Composer and WP-CLI fail in a folder they can't read.
+
 # run WP-CLI against the site as the user its PHP runs as (Bedrock keeps core in web/wp)
 wp_site() {
-    sudo -u "$SITE_USER" WP_CLI_CACHE_DIR="/var/cache/wp-cli/$SITE_USER" /usr/local/bin/wp --path="$SITE_WEB_ROOT/wp" "$@"
+    (cd / && sudo -u "$SITE_USER" WP_CLI_CACHE_DIR="/var/cache/wp-cli/$SITE_USER" /usr/local/bin/wp --path="$SITE_WEB_ROOT/wp" "$@")
 }
 
-# run a command in the repo as the deploy user, who owns the code
+# run a command as the deploy user, who owns the code
 as_deploy() {
-    sudo -u "$DEPLOY_USER" -H "$@"
+    (cd / && sudo -u "$DEPLOY_USER" -H "$@")
 }
 
 # add keys to a user's authorized_keys, skipping ones already there

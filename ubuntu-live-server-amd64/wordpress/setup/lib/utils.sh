@@ -7,9 +7,12 @@ check_sudo() {
     fi
 }
 
+# These run from / because the script runs from inside the admin user's home folder,
+# which other users can't read, and git, Composer and WP-CLI fail in a folder they can't read.
+
 # run WP-CLI against the site as the user its PHP runs as
 wp_site() {
-    sudo -u "$SITE_USER" WP_CLI_CACHE_DIR="/var/cache/wp-cli/$SITE_USER" /usr/local/bin/wp --path="$SITE_ROOT" "$@"
+    (cd / && sudo -u "$SITE_USER" WP_CLI_CACHE_DIR="/var/cache/wp-cli/$SITE_USER" /usr/local/bin/wp --path="$SITE_ROOT" "$@")
 }
 
 section_start() {
