@@ -127,6 +127,12 @@ server {
     # Never run PHP from uploads
     location ~* ^/app/uploads/.*\.php$ { return 444; }
 
+    # Never run PHP from the cache, which PHP can write to
+    location ~* ^/app/cache/.*\.php$ { return 444; }
+
+    # Wordfence's rules and logs, written by PHP and never served
+    location ^~ /app/wflogs/ { return 444; }
+
     # Rate limit login attempts
     location ~* ^/(?:wp/)?wp-login\.php$ {
         limit_req zone=wp_login burst=5 nodelay;

@@ -103,14 +103,15 @@ setup_bedrock_site() {
         as_deploy composer install --no-dev --optimize-autoloader --no-interaction --working-dir="$theme_dir"
     fi
 
-    # code is read-only to PHP, apart from uploads and the cache
-    # (Acorn compiles the Sage theme's Blade views into app/cache/acorn)
-    for dir in uploads cache; do
+    # code is read-only to PHP, apart from uploads, the cache (Acorn compiles the Sage
+    # theme's Blade views into app/cache/acorn) and Wordfence's firewall rules and logs
+    for dir in uploads cache wflogs; do
         mkdir -p "$SITE_WEB_ROOT/app/$dir"
         chown "$SITE_USER:$SITE_USER" "$SITE_WEB_ROOT/app/$dir"
         chmod 755 "$SITE_WEB_ROOT/app/$dir"
     done
 
+    setup_wordfence_waf_loader
     setup_security_txt
 
     mysql -e "CREATE DATABASE IF NOT EXISTS \`$SITE_DB_NAME\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
@@ -176,6 +177,34 @@ Canonical: https://$SITE_DOMAIN/.well-known/security.txt
 EOF
 
     echo "Wrote security.txt, expires in a year (run this script again to renew)."
+}
+
+setup_wordfence_waf_loader() {
+    local loader="$SITE_ROOT/wordfence-waf.php"
+
+    if [ "$WORDFENCE_WAF" != "true" ]; then
+        return
+    fi
+
+    # Wordfence's "Optimize the Firewall" would write this into web/wp/, which PHP can't
+    # write to. It lives outside web/ instead, so it can't be requested, and is owned by
+    # the deploy user, so PHP can't change it. The PHP pool loads it (see php-pool.sh).
+    install -m 644 -o "$DEPLOY_USER" -g "$DEPLOY_USER" /dev/null "$loader"
+
+    cat > "$loader" <<EOF
+<?php
+// Wordfence firewall, loaded before WordPress by auto_prepend_file in the site's PHP-FPM pool.
+// Written by dotfiles bedrock/setup. To turn it off, set WORDFENCE_WAF=false and run setup.sh,
+// which removes it from the pool; this file can then be deleted.
+
+if (file_exists('$SITE_WEB_ROOT/app/plugins/wordfence/waf/bootstrap.php')) {
+    define('WFWAF_LOG_PATH', '$SITE_WEB_ROOT/app/wflogs/');
+    include_once '$SITE_WEB_ROOT/app/plugins/wordfence/waf/bootstrap.php';
+}
+EOF
+
+    # every PHP request loads this file, so a mistake in it would take the site down
+    php -l "$loader"
 }
 
 bedrock_is_cloned() {

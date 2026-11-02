@@ -22,6 +22,8 @@ setup_php_pool() {
         write_php_pool "$pool_conf"
     fi
 
+    setup_wordfence_waf_prepend "$pool_conf"
+
     # nothing uses the stock [www] pool now, so stop it keeping idle processes around
     if [ -f "$pool_dir/www.conf" ]; then
         echo "Disabling the stock [www] pool..."
@@ -59,7 +61,34 @@ pm.max_requests = 500
 php_admin_value[upload_max_filesize] = 64M
 php_admin_value[post_max_size] = 64M
 
-; site-specific settings go here, e.g. the line Wordfence's "Optimize the Firewall" gives:
-; php_admin_value[auto_prepend_file] = $SITE_WEB_ROOT/wordfence-waf.php
+; site-specific settings go here; with WORDFENCE_WAF=true, setup.sh adds Wordfence's
+; auto_prepend_file line at the end
 EOF
+}
+
+# Wordfence extended protection: load its firewall before WordPress on every request.
+# Added and removed here rather than in write_php_pool, as the pool file is only written once.
+setup_wordfence_waf_prepend() {
+    local pool_conf="$1"
+    local loader="$SITE_ROOT/wordfence-waf.php"
+    local prepend="php_admin_value[auto_prepend_file] = $loader"
+
+    # only with the loader in place: a missing auto_prepend_file breaks every request
+    if [ "$WORDFENCE_WAF" = "true" ] && [ -f "$loader" ]; then
+        if grep -qxF "$prepend" "$pool_conf"; then
+            echo "Wordfence extended protection already enabled, skipping."
+        else
+            echo "Enabling Wordfence extended protection..."
+
+            echo "$prepend" >> "$pool_conf"
+        fi
+    elif grep -qxF "$prepend" "$pool_conf"; then
+        echo "Disabling Wordfence extended protection..."
+
+        local tmp
+        tmp=$(mktemp)
+        grep -vxF "$prepend" "$pool_conf" > "$tmp"
+        cat "$tmp" > "$pool_conf"
+        rm -f "$tmp"
+    fi
 }

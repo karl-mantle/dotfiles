@@ -29,6 +29,10 @@ DEPLOY_AUTHORIZED_KEYS=(
     ""
 )
 
+# Wordfence firewall "extended protection": runs it before WordPress loads, through the PHP pool.
+# Harmless until Wordfence is installed (through Composer); set to false to turn it off.
+WORDFENCE_WAF=true
+
 # security.txt contact, e.g. "mailto:security@example.com" (leave empty to skip)
 SECURITY_CONTACT=""
 

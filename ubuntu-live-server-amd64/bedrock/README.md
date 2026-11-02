@@ -59,6 +59,7 @@ sudo CF_API_TOKEN=... ./setup.sh
 - **deploy user**: owns the code, pulls with a read-only GitHub deploy key, and is what GitHub Actions logs in as (no sudo)
 - **bedrock site**: clone, Composer install, database, user and `.env` for `SITE_DOMAIN`, plus `security.txt`
 - **php-fpm pool**: a pool per site, running as the site's own system user
+- **wordfence firewall**: with `WORDFENCE_WAF=true`, a loader at `SITE_ROOT/wordfence-waf.php` (owned by `deploy`, outside `web/`) runs Wordfence's firewall before WordPress through the pool's `auto_prepend_file` ("extended protection")
 - **maintenance**: daily database backup and checks (`wordpress-maintenance-<site user>.timer`)
 - **fail2ban**: `sshd`, `nginx-http-auth` and `bedrock` (`wp/wp-login.php`) jails, optionally banning at Cloudflare
 - **ssh hardening**: no root login, no password login, no X11 forwarding (skipped until the user has a key)
@@ -71,7 +72,7 @@ The script is safe to run again, e.g. after adding the deploy key.
 |---|---|---|
 | your admin user | - | SSH in and run `sudo ./setup.sh` |
 | `DEPLOY_USER` (`deploy`) | the repo in `SITE_ROOT` | `git pull`, Composer, theme rsync; GitHub Actions logs in as it |
-| `SITE_USER` | `web/app/uploads`, `web/app/cache` | PHP-FPM runs as it; reads `.env` through its group, can't change the code. The cache holds Acorn's compiled Blade views |
+| `SITE_USER` | `web/app/uploads`, `web/app/cache`, `web/app/wflogs` | PHP-FPM runs as it; reads `.env` through its group, can't change the code. The cache holds Acorn's compiled Blade views, `wflogs` Wordfence's firewall rules and logs |
 
 `.env` is `640`, owned by the deploy user with the site user's group. Plugin and core updates come through Composer, not the dashboard (the repo's `DISALLOW_FILE_MODS`).
 
